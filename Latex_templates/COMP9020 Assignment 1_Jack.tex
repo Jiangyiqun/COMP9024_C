@@ -1,0 +1,186 @@
+%Name: Template of COMP9020 Assignments
+%Author:Jack
+%Date: 14/08/2017
+%Acknowledgement: This template is based on work of Brendan Trinh of UNSW MathSoc 2015
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{amsmath} % Improves structure of typed out maths
+\usepackage{mathtools} % Improves upon deficiencies of amsmath package
+\usepackage{amssymb} % Adds some handy symbols to use.
+\usepackage{amsthm} % Adds some neat formulas to use, e.g. \begin{proof} etc.
+
+\usepackage[a4paper]{geometry} % Default page margins can be altered.
+\usepackage{microtype} % Improves spacing between letters.
+\usepackage{booktabs} % Improves tables. Can now create without vertical separators.
+\usepackage{array} % Includes more options for arrays
+\usepackage{paralist} % More flexible use of itemize, enumerate, etc.
+\usepackage{graphicx} % Add images to your document
+\usepackage{color} % Allows for the use of colours!
+\usepackage{cleveref} % Better cross-referencing
+\usepackage{hyperref} % For adding hyperlinks
+\usepackage{fancyhdr} % Customise headers & footers in document
+\usepackage{paralist}
+
+\usepackage{url} % For adding url
+
+\begin{document}
+\title{COMP9020 - Assignment 1}
+\author{Jack(z5129432)}
+\date{ 14ed August 2017 }
+\maketitle
+
+% \section*{Set notation}
+% \begin{enumerate}[(a)]
+% 	$$ \O $$
+% 	$$ \in $$
+% 	$$ \notin $$
+% 	$$ \subset $$
+% 	$$ \cup $$
+% 	$$ \cap $$
+% 	$$ \setminus $$
+% 	$$ \oplus $$
+% 	$$  $$
+% \end{enumerate}
+
+\section*{Question 1}
+\begin{enumerate}[(a)]
+	\item
+	we have $$gcd(288, 120) = gcd(120, 48) = (48, 24) = (24, 24)$$
+	so $$gcd(288, 120) = 24$$
+	\item
+	we know that $$lcm(-91, 52) = lcm(91, 52)$$
+	first calculate $$gcd(91, 52) = gcd(39, 52) = gcd(13, 39) = gcd(13, 13) = 13$$
+	according to \cite{lcm} $$gcd(91, 52) \times lcm(91, 52) = 91 \times 52 = 4732$$ 
+	we can know that $$lcm(-91, 52) = \frac{4732}{gcd(91, 52)} = \frac{4732}{13} = 364$$
+	\item
+	$$ \because n + 1 > n \, for \, n \in N $$
+	according to Euclid's algorithm \cite{euclid}
+	$$gcd(n +1, n) = gcd (n + 1 - n, n) = gcd(n, 1)$$
+	$\therefore$ n and n+1 are relative prime, for $ n \in N$
+\end{enumerate}
+
+\section*{Question 2}
+\begin{enumerate}[(a)]
+	\item 
+	$$ \because \, Pow(\emptyset) = \emptyset $$
+	$$ \therefore \, Pow(Pow(\emptyset)) = \emptyset$$
+	$$ Card( \emptyset) = 0 $$
+
+	\item
+	$$ A \cap (B \oplus C) = A \cap ((B \backslash C) \cup (C \backslash B))  $$
+	$$ = (A \cap (B \backslash C) \cup (A \cap (C \backslash B)) $$
+	other the other hand
+	$$ (A \cap B) \oplus (A \cap C) = ((A \cap B) \backslash (A \cap C)) \cup ((A \cap C) \backslash (A \cap B)$$
+	According to the definition of difference
+	$$ = (A \cap (B \backslash C) \cup (A \cap (C \backslash B)) $$
+
+	\item
+	if  A = \{1, 2\}\, B = \{2, 3\}\, C = \{3, 4\}
+	$$ A \oplus (B \cap C)$$
+	$$ = (A \backslash (B \cap C)) \cup ((B \cap C) \backslash A) $$
+	$$ = \{1, 2, 3\}$$
+	on the other hand 
+	$$ (A \oplus B) \cap (A \oplus C)$$
+	$$ (A \backslash B) \cap (B \backslash A) \cap (A \backslash C) \cap (C \backslash A)$$
+	$$ = (A \backslash (B \cup C)) \cap ((B \cap C) \backslash A)$$
+	$$ = \emptyset $$
+	
+\end{enumerate}
+
+\section*{Question 3}
+\begin{enumerate}[(a)]
+
+	\item
+	$$\{ \lambda, 1, 11, 111, 112, 12, 121, 122, 2, 21, 22, 211, 212, 221, 222 \}$$
+	\item
+	$$\{ \lambda, 1, 2, 11, 12, 21, 22, 111, 112, 121, 122, 211, 212, 221, 222 \}$$
+\end{enumerate}
+
+\section*{Question 4}
+\begin{enumerate}[(a)]
+	\item
+	\begin{itemize}
+		\item 
+		$ f(a) = f(b) = f(c) = 0$
+		\item
+		$ f(a) = 0 \, f(b) = 0 \, f(c) = 1$
+		\item
+		$ f(a) = 0 \, f(b) = 1 \, f(c) = 0$
+		\item
+		$ f(a) = 0 \, f(b) = 1 \, f(c) = 1$
+		\item
+		$ f(a) = 1 \, f(b) = 0 \, f(c) = 0$
+		\item
+		$ f(a) = 1 \, f(b) = 0 \, f(c) = 1$
+		\item
+		$ f(a) = 1 \, f(b) = 1 \, f(c) = 0$
+		\item 
+		$ f(a) = f(b) = f(c) = 1$
+	\end{itemize}
+	\item \
+	\begin{enumerate}[(i)]
+		\item
+		for every $a \in A$, there are n choices\\
+		there for, the number of function is $m^n$
+		\item
+		every relation can be seen as a function, so the number is:\
+		$$ m^n + n^m $$
+	\end{enumerate}
+	\item 
+	to list all function form \{a, b, c\} to \{0,1\}, we can do like this: \\
+	A is one subset of \{a,b,c\} \\
+	$ A \rightarrow 0 $ \\
+	$ \{a,b,c\} \backslash A \rightarrow 1 $ \\
+	therefore, Card(Pow\{a,b,c\}) is equal to the number in answer (a)
+
+\end{enumerate}
+
+\section*{Question 5}
+\begin{enumerate}[(a)]
+	\item 
+	\begin{enumerate}[(i)]
+		\item	Yes\\
+		because length(w) = length(v)\\
+		therefor, for any v $\in$ L\\
+		$\omega v \in$ L if and only if $\omega ' \in$ L
+		\item	No\\
+		for v = (a)\
+		$\omega v$ = (aba) $\in$ L\\
+		whereas $\omega 'v$ = (ababa) $\notin$ L
+		\item	No\\
+		for v = (a,a)\\
+		$\omega v$ = (aa) $\notin$ L\\
+		whereas $\omega 'v$ = (baa) $\in$ L
+		\item 	No\\
+		for v = (a)\\
+		$\omega v$ = (a) $\notin$ L\\
+		whereas $\omega 'v$ = (bba) $\in$ L
+		\item   Yes\\
+		if v $\in$ L, then $\omega v$ $\in$ L and $\omega 'v$ $\in$ L\\
+		if v $\notin$ L, then $\omega v$ $\notin$ L and $\omega 'v$ $\notin$ L
+	\end{enumerate}
+	\item
+	wRw' is equal to length(w) mod 3 = length(w') mod 3\\
+	(R) for any v, it is obvious that wv $\in$ L if, and only if wv $\in$ L\\
+	(S) we know that wRw', for any v:\\
+		if w'v $\in$ L, then wv $\in$ L\\
+		if w'v $\notin$ L, then wv $\notin$ L\\
+	(T) we know that wRw' and w'Rw''\\
+		if w'v $\in$ L, then w''v $\in$ L\\
+		if w'v $\notin$ L, then w''v $\notin$ L\\
+	therefor, R is a equivalence relation
+	\item three equivalence classes, as following:\\
+		\lbrack s1 \rbrack = \{(w,w' $\in$ R): length(w) mod 3 = length(w') mod 3 = 0\}\\
+		\lbrack s2 \rbrack = \{(w,w' $\in$ R): length(w) mod 3 = length(w') mod 3 = 1\}\\
+		\lbrack s3 \rbrack = \{(w,w' $\in$ R): length(w) mod 3 = length(w') mod 3 = 2\}
+
+\end{enumerate}
+
+\begin{thebibliography}{99}
+\bibitem{lcm}
+\url{https://en.wikipedia.org/wiki/Least_common_multiple#Fundamental_theorem_of_arithmetic} 
+\bibitem{euclid}
+\url{https://en.wikipedia.org/wiki/Greatest_common_divisor#Using_Euclid.27s_algorithm}
+\end{thebibliography}
+
+\end{document}
