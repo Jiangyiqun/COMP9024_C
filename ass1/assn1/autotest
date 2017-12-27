@@ -1,0 +1,71 @@
+#!/bin/bash
+
+QNAME="listIteratorInt"
+BIN="testListIterInt"
+
+echo
+echo "                      $QNAME Test Report"
+if ! which colordiff &> /dev/null
+then
+    echo "Try 'sudo apt-get install colordiff' before excuting this script to get a more readable result"
+fi
+echo
+
+if [ ! -f "$BIN" ]
+then
+    echo "No such executable: $BIN"
+    exit 1
+fi
+
+if [ ! -x "$BIN" ]
+then
+    echo "$BIN is not executable"
+    exit 1
+fi
+
+if [ ! -d tests ]
+then
+    echo "No tests/ directory here. Are you in the right directory?"
+    exit 1
+fi
+
+
+if [ "$#" -eq 0 ]
+then
+    tsts="1 2 3"
+elif [ "$#" -eq 1 ]
+then
+    tsts="$1"
+else
+    echo "Usage-1: autotest  "
+    echo "Usage-2: autotest <test-number> "
+    exit 1
+fi
+
+for t in $tsts
+do
+
+    ./testListIterInt $t | head -500 > tests/$t.out
+    if cmp -s tests/$t.out tests/$t.exp
+    then
+        echo -e "\e[32m                             Test $t Passed\e[39m"
+        echo "The Output"
+        echo "----------- "
+        cat tests/$t.out
+        echo
+    else
+        echo -e "\e[31m                             Test $t Failed\e[39m"
+        echo "Your Output                                                    Expected Output"
+        echo "-----------                                                    ---------------"
+        if which colordiff &> /dev/null
+        then
+            diff -y tests/$t.out tests/$t.exp | colordiff
+        else
+            diff -y tests/$t.out tests/$t.exp
+        fi
+        echo
+    fi
+done
+
+
+
