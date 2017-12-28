@@ -1,0 +1,10 @@
+add 25, returns 1 
+add 14, returns 1 
+add 32, returns 1 
+add 53, returns 1 
+add 8, returns 1 
+findprev 14, returns 14 
+previous, returns 25 
+previous, returns NULL 
+findprev 32, returns NULL 
+next, returns 25 
