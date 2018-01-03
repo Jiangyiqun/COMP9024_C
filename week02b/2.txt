@@ -1,0 +1,14 @@
+Statement	  	                        # primitive operations
+for all i=n down to 1 do	  	        n+1+n = 2n+1, but inside there are n loops
+    	for all j=n down to i do		for i = n, there is 1 operation, and 0 loop inside
+                                        for i = n-1, there is 1+2 operations, and 1 loop inside
+                                        ...
+                                        for i = 1, there is n + (n+1) operations, and n+n loops inside
+                                        for i, there is (n-i)+(n-i+1) = 2(n-i) +1 operations
+                                        1 + 3 + 5 +  ... 2n + 1 = (1 + 2n + 1) * ((2n+1-1)/2+1) / 2 = n^2 + 2n + 1
+                                        there is 2 + 4 + ...+ 2n = (2 +2n) * ((2n-2)/2 + 1) / 2 = n(n+1) loops
+    	    	print "A[i]A[j]"		n(n+1)
+    	end for	
+end for	
+
+therefore, there is 2n+1 + n^2 +2n + 1 + n^2 +n =2n^2+5n +2
