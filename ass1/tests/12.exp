@@ -1,0 +1,12 @@
+free
+add 25, returns 0 
+next, returns NULL 
+previous, returns NULL 
+delete, returns 0 
+hasnext, returns 0 
+hasprev, returns 0 
+reset
+findnext 25, returns NULL 
+findprev 3, returns NULL 
+set 5, returns 0 
+free

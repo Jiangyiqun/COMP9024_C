@@ -1,0 +1,28 @@
+add 25, returns 1 
+add 14, returns 1 
+add 32, returns 1 
+add 53, returns 1 
+add 8, returns 1 
+delete, returns 0 
+next, returns NULL 
+delete, returns 0 
+previous, returns 8 
+delete, returns 1 
+hasnext, returns 0 
+delete, returns 0 
+hasprev, returns 1 
+delete, returns 0 
+reset
+delete, returns 0 
+findnext 25, returns 25 
+delete, returns 1 
+findprev 3, returns NULL 
+delete, returns 0 
+set 5, returns 0 
+delete, returns 0 
+reset
+next, returns 14 
+next, returns 32 
+next, returns 53 
+next, returns NULL
+next, returns NULL 

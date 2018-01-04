@@ -3,14 +3,15 @@ add 14, returns 1
 add 32, returns 1 
 add 53, returns 1 
 add 8, returns 1 
-findnext 0, returns NULL 
 previous, returns 8 
 previous, returns 53 
 previous, returns 32 
-findnext 666, returns NULL 
 previous, returns 14 
+previous, returns 25 
+previous, returns NULL 
+next, returns 25 
 next, returns 14 
-findnext 53, returns 53 
+next, returns 32 
+next, returns 53 
 next, returns 8 
-previous, returns 8 
-previous, returns 53 
+next, returns NULL 

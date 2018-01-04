@@ -1,0 +1,26 @@
+add 25, returns 1 
+add 14, returns 1 
+add 32, returns 1 
+add 53, returns 1 
+add 8, returns 1 
+set 5, returns 0 
+next, returns NULL 
+set 5, returns 0 
+previous, returns 8 
+set 5, returns 1 
+hasnext, returns 1 
+set 5, returns 0 
+hasprev, returns 1 
+set 5, returns 0 
+reset
+set 5, returns 0 
+findnext 25, returns 25 
+set 5, returns 1 
+findprev 3, returns NULL 
+set 5, returns 0 
+reset
+next, returns 5 
+next, returns 14 
+next, returns 32 
+next, returns 53 
+next, returns 5 

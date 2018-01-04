@@ -1,6 +1,7 @@
 /*
   client to test listIteratorInt.
   Written by Ashesh Mahidadia, Dec 2017
+  Moded by Jack Jiang, Jan 2018
 */
 
 #include <stdlib.h>
@@ -96,6 +97,13 @@ int main(int argc, char *argv[]) {
       prevdsp(it);
       prevdsp(it);
       prevdsp(it);   
+      prevdsp(it);
+      prevdsp(it);
+      prevdsp(it);   
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
       nextdsp(it);
       nextdsp(it);
     } else if(TestNo == 3) { 
@@ -208,14 +216,79 @@ int main(int argc, char *argv[]) {
       prevdsp(it);
       prevdsp(it);
     } else if (TestNo == 12) {
+      // adddsp(it, 25);
+      freedsp(it);
+      it = NULL;
+      adddsp(it, 25);
+      nextdsp(it);
+      prevdsp(it);
+      deletedsp(it);
+      hasnextdsp(it);
+      hasprevdsp(it);
+      resetdsp(it);
+      findnextdsp(it, 25);
+      findprevdsp(it, 3);
+      setdsp(it, 5);
+      freedsp(it);
+      it = NULL;
+    } else if (TestNo == 13) {
       adddsp(it, 25);
       adddsp(it, 14);
       adddsp(it, 32);
       adddsp(it, 53);
       adddsp(it, 8);
-      freedsp(it);
+      deletedsp(it);
+      nextdsp(it);
+      deletedsp(it);
+      prevdsp(it);
+      deletedsp(it);
+      hasnextdsp(it);
+      deletedsp(it);
+      hasprevdsp(it);
+      deletedsp(it);
+      resetdsp(it);
+      deletedsp(it);
+      findnextdsp(it, 25);
+      deletedsp(it);
+      findprevdsp(it, 3);
+      deletedsp(it);
+      setdsp(it, 5);
+      deletedsp(it);
+      resetdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+    } else if (TestNo == 14) {
+      adddsp(it, 25);
+      adddsp(it, 14);
+      adddsp(it, 32);
+      adddsp(it, 53);
+      adddsp(it, 8);
+      setdsp(it, 5);
+      nextdsp(it);
+      setdsp(it, 5);
+      prevdsp(it);
+      setdsp(it, 5);
+      hasnextdsp(it);
+      setdsp(it, 5);
+      hasprevdsp(it);
+      setdsp(it, 5);
+      resetdsp(it);
+      setdsp(it, 5);
+      findnextdsp(it, 25);
+      setdsp(it, 5);
+      findprevdsp(it, 3);
+      setdsp(it, 5);
+      resetdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+      nextdsp(it);
+    } else if (TestNo == 15) {
+
     }
-
-
     return EXIT_SUCCESS;
 }
