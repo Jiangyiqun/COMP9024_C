@@ -3,14 +3,14 @@
 CC = gcc
 CFLAGS = -Wall -Werror -g
 
-all : component
+all : components
 
-component : component.o Graph.o 
-	$(CC) $(CFLAGS) -o component  component.o Graph.o
+components : components.o Graph.o 
+	$(CC) $(CFLAGS) -o components  components.o Graph.o
 
-component.o: component.c Graph.h
+components.o: components.c Graph.h
 
 Graph.o : Graph.c  Graph.h
 
 clean :
-	rm -f *.o *.exe component
+	rm -f *.o *.exe components
