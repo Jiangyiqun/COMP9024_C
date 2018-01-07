@@ -6,14 +6,14 @@
 void assignID(Graph g, int nV, int *componentOf, int index, int componentID);
 
 int main(void) {
-    int nV = 9;  // number of vertices
+    int nV;  // number of vertices
     Edge e;     // an edge
     int i, j;  // index
     int componentID = 1;    //component ID, increase from 1
-    int *componentOf = malloc(sizeof(int) * nV);     //array of component ID related to each vertix
     // // create new empty graph
     printf("Enter the number of vertices: ");
     scanf("%d", &nV);
+    int *componentOf = malloc(sizeof(int) * nV);     //array of component ID related to each vertix
     Graph g = newGraph(nV);
     // //insert edge into graph
     while (true) {
