@@ -1,0 +1,21 @@
+Number of vertices: 7
+Number of edges: 18
+Edge url11 - url21 -
+Edge url11 - url22 -
+Edge url11 - url23 -
+Edge url11 - url32
+Edge url11 - url34
+Edge url21 - url22 
+Edge url21 - url31 -
+Edge url21 - url32
+Edge url21 - url34
+Edge url22 - url31
+Edge url22 - url32
+Edge url22 - url34
+Edge url23 - url31
+Edge url23 - url32
+Edge url23 - url34
+Edge url31 - url32
+Edge url31 - url34
+Edge url32 - url34
+
