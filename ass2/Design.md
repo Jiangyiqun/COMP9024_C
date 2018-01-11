@@ -3,7 +3,7 @@
 ## PageRank algorithm
 
 ```c
-pagerankList[nV][4] = {sequency, url, out degree, PR}
+pagerankList[nV][4] = {url, out degree, PR}
 
 PageRank(web, d, diffPR, maxIterations)
     input: graph web contains URL and their relationship
@@ -29,7 +29,7 @@ PageRank(web, d, diffPR, maxIterations)
                 incomingPR = 0
                 for each vertices w in web    // calculate incomingPR for newPR[v]
                     if w is adjacent to v then
-                        incomingPR += oldPR[w] / pagerankList[w][2]
+                        incomingPR += oldPR[w] / pagerankList[w][2] 
                     end if
                 newPR[v] = (1 - d) / nV + d * incomingPR
                 end for

@@ -3,6 +3,8 @@
         "stdio.h": "c",
         "assert.h": "c",
         "stdlib.h": "c",
-        "list.h": "c"
+        "list.h": "c",
+        "directedgraph.h": "c",
+        "pagerank.h": "c"
     }
 }

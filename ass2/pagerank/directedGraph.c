@@ -1,6 +1,7 @@
 // Graph ADT
 // Adjacency Matrix Representation ... COMP9024 17s2
-#include "Graph.h"
+// Modified by Jack Jiang(z5129432) to a directed graph ADT
+#include "directedGraph.h"
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -42,7 +43,6 @@ void insertEdge(Graph g, Edge e) {
 
    if (!g->edges[e.v][e.w]) {  // edge e not in graph
       g->edges[e.v][e.w] = 1;
-      g->edges[e.w][e.v] = 1;
       g->nE++;
    }
 }
@@ -52,7 +52,6 @@ void removeEdge(Graph g, Edge e) {
 
    if (g->edges[e.v][e.w]) {   // edge e in graph
       g->edges[e.v][e.w] = 0;
-      g->edges[e.w][e.v] = 0;
       g->nE--;
    }
 }
@@ -70,9 +69,9 @@ void showGraph(Graph g) {
     printf("Number of vertices: %d\n", g->nV);
     printf("Number of edges: %d\n", g->nE);
     for (i = 0; i < g->nV; i++)
-       for (j = i+1; j < g->nV; j++)
+       for (j = 0; j < g->nV; j++)
 	  if (g->edges[i][j])
-	      printf("Edge %d - %d\n", i, j);
+	      printf("Edge %d -> %d\n", i, j);
 }
 
 void freeGraph(Graph g) {
@@ -83,4 +82,16 @@ void freeGraph(Graph g) {
       free(g->edges[i]);
    free(g->edges);
    free(g);
+}
+
+int outDegree(Graph g, Vertex v) {
+    assert(g != NULL);
+    int i;
+    int d = 0;
+    for (i = 0; i < g->nV; i++) {
+        if (g->edges[v][i]) {
+            d++;
+        }
+    }
+    return d;
 }
