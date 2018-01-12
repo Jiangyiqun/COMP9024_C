@@ -14,25 +14,26 @@ int main(void) {
     float minDifferece = 0.00001;
     int maxIterations = 1000;
 
-    int nURL = GetURLNumber();
+    int nURL = getURLNumber();
     // printf("The number of URLs are: %d\n",nURL);
-    PRNode *PRList = InitPRList(nURL);
+    PRNode *PRList = createPRList(nURL);
     // showPRList(PRList, nURL);
-
-    Graph web = GetGraph(PRList, nURL);
+    Graph web = createGraph(PRList, nURL);
     // showGraph(web);
-    GetOutDegree(web, PRList, nURL);
+    getOutDegree(web, PRList, nURL);
     // showPRList(PRList, nURL);
-    GetPagerank(d, minDifferece, maxIterations, web, PRList, nURL);
+    getPagerank(d, minDifferece, maxIterations, web, PRList, nURL);
     // showPRList(PRList, nURL);
-    WritePRList(PRList, nURL);
+    sortPRList(PRList, nURL);
+    // howPRList(PRList, nURL);
+    writePRList(PRList, nURL);
     freeGraph(web);
     free(PRList);
     return EXIT_SUCCESS;
 }
 
 
-int GetURLNumber() {
+int getURLNumber() {
     int nURL = 0;
     char url[MAX_URL_LENGTH];
     FILE *collection = fopen("collection.txt", "r");
@@ -44,7 +45,7 @@ int GetURLNumber() {
 }
 
 
-PRNode *InitPRList(int nURL) {
+PRNode *createPRList(int nURL) {
     char url[MAX_URL_LENGTH];
     int i;
     PRNode *PRList = malloc(sizeof(PRNode) * nURL);
@@ -60,7 +61,7 @@ PRNode *InitPRList(int nURL) {
 }
 
 
-int WritePRList(PRNode *PRList, int nURL) {
+int writePRList(PRNode *PRList, int nURL) {
     int i;
     FILE *pagerankList = fopen("pagerankList.txt", "w");
     for (i = 0; i < nURL; i++) {
@@ -71,7 +72,7 @@ int WritePRList(PRNode *PRList, int nURL) {
 }
 
 
-Graph GetGraph(PRNode *PRList, int nURL) {
+Graph createGraph(PRNode *PRList, int nURL) {
     Graph web = newGraph(nURL);
     int i;
     char pageFile[MAX_URL_LENGTH + 4];  // filename such as "url11.txt"
@@ -103,8 +104,8 @@ Graph GetGraph(PRNode *PRList, int nURL) {
                 // debug
                 // printf("which includes URLs: %s\n", url);
 
-                link.v = GetURLIndex(PRList[i].url, PRList, nURL);  // source
-                link.w = GetURLIndex(url, PRList, nURL);    // destination
+                link.v = getURLIndex(PRList[i].url, PRList, nURL);  // source
+                link.w = getURLIndex(url, PRList, nURL);    // destination
                 insertEdge(web, link);
             }
         }
@@ -114,7 +115,7 @@ Graph GetGraph(PRNode *PRList, int nURL) {
 }
 
 
-int GetURLIndex(char* url, PRNode *PRList, int nURL) {
+int getURLIndex(char* url, PRNode *PRList, int nURL) {
     int i;
     for (i = 0; i < nURL; i++) {
         if (strcmp(PRList[i].url, url) == 0) {
@@ -125,7 +126,7 @@ int GetURLIndex(char* url, PRNode *PRList, int nURL) {
 }
 
 
-int GetOutDegree(Graph web, PRNode *PRList, int nURL) {
+int getOutDegree(Graph web, PRNode *PRList, int nURL) {
     int i;
     for (i = 0; i < nURL; i++) {
         PRList[i].degree = outDegree(web, i);
@@ -142,7 +143,7 @@ void showPRList(PRNode *PRList, int nURL) {
 }
 
 
-int GetPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNode *PRList, int nURL) {
+int getPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNode *PRList, int nURL) {
     float *newPR = malloc(sizeof(float) * nURL);    // PR used in calculation
     assert(newPR != NULL);
     float incomingPR = 0;   // PR from all incoming links, not random jump
@@ -197,5 +198,29 @@ int GetPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNod
     // printf("the totalDiff is the %.7f\n", totalDiff);
     
     free(newPR);
+    return 1;
+}
+
+int sortPRList(PRNode *PRList, int nURL) {
+    int i;
+    int swap = 1;   // 0: no swap occur in the loop; 1: swap occur in the loop
+    PRNode temp;    // a temperory node for swap
+    while (swap == 1) {
+        swap = 0;   // mark as no swap occurs
+        for (i = 1; i < nURL; i ++) {
+            if (PRList[i-1].PR < PRList[i].PR) {
+                swap = 1;   // mark as swap occurs
+                strcpy(temp.url, PRList[i].url);
+                temp.degree = PRList[i].degree;
+                temp.PR = PRList[i].PR;
+                strcpy(PRList[i].url, PRList[i-1].url);
+                PRList[i].degree= PRList[i-1].degree;
+                PRList[i].PR = PRList[i-1].PR;
+                strcpy(PRList[i-1].url, temp.url);
+                PRList[i-1].degree= temp.degree;
+                PRList[i-1].PR = temp.PR;
+            }
+        }
+    }
     return 1;
 }

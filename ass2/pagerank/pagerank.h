@@ -6,14 +6,14 @@ typedef struct PRNode {
 } PRNode;
 
 // return the number of URLs in collection.txt
-int GetURLNumber();
+int getURLNumber();
 
 // initialise an array of PRNode:
 //      char url[5]: fill with urls in collection.txt
 //      int degree: initialise to 0
 //      float PR: initialise to o
 // and then return the pointer to the array
-PRNode* InitPRList(int nURL);
+PRNode* createPRList(int nURL);
 
 // write to file pagerankList.txt, as following format
     // url31, 3, 0.2623546
@@ -23,20 +23,23 @@ PRNode* InitPRList(int nURL);
     // url32, 6, 0.0925755
     // url23, 4, 0.0776758
     // url11, 3, 0.0733884
-int WritePRList(PRNode *PRList, int nURL);
+int writePRList(PRNode *PRList, int nURL);
 
 // just print PRList on the screen
 void showPRList(PRNode *PRList, int nURL);
 
 // generate a graph data structure
 // return the pointer of the graph
-Graph GetGraph(PRNode *PRList, int nURL);
+Graph createGraph(PRNode *PRList, int nURL);
 
 // return the index of a URL
-int GetURLIndex(char* url, PRNode *PRList, int nURL);
+int getURLIndex(char* url, PRNode *PRList, int nURL);
 
 // generate degree and put them into PRList
-int GetOutDegree(Graph web, PRNode *PRList, int nURL);
+int getOutDegree(Graph web, PRNode *PRList, int nURL);
 
 // calculate pagerank and put them into PRList
-int GetPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNode *PRList, int nURL);
+int getPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNode *PRList, int nURL);
+
+// sort PRList in descending order of PR value
+int sortPRList(PRNode *PRList, int nURL);
