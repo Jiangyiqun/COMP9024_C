@@ -6,11 +6,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include<string.h>
 
 int main(void) {
-    int n = 0;
-    printf("please input a number: ");
-    scanf("%d", &n);
-    printf("your input is %d\n", n);
+    char word[50] = "hello world";
+    word[10] = '\0';
+    printf("%s\n", word);
     return EXIT_SUCCESS;
 }

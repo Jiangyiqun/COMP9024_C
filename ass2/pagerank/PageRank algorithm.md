@@ -1,8 +1,6 @@
-# Assignment 2 design
+# PageRank algorithm
 
-## PageRank algorithm
-
-```c
+```
 pagerankList[nV][4] = {url, out degree, PR}
 
 PageRank(web, d, diffPR, maxIterations)
@@ -44,7 +42,4 @@ PageRank(web, d, diffPR, maxIterations)
                 oldPR[v] = newPR[v]
             end for
     end While
-
-
-
 ```
