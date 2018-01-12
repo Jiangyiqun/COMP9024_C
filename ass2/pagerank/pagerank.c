@@ -1,31 +1,38 @@
+// File: pagerank.c
+// Author: Jack Jiang (z5129432)
+// Data: 2018x1
+// Description:
+//     for COMP9024 Assignment 2
+// Reference:
+//     https://www.cse.unsw.edu.au/~cs9024/18x1/assn/assn2/Ass2.html
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include<assert.h>
-
-#include"directedGraph.h"   // modified from https://www.cse.unsw.edu.au/~cs9024/18x1/slides/week03a/progs/
+#include"directedGraph.h"
 #include"pagerank.h"
 
 #define MAX_URL_LENGTH 6    // 5 char plus a terminator
 
 
-int main(void) {
-    float d = 0.85;
-    float minDifferece = 0.00001;
-    int maxIterations = 1000;
-
+int main(int argc, char *argv[]) {
+    assert(argc == 4);
+    float d = atof(argv[1]);
+    float minDifferece = atof(argv[2]);
+    int maxIterations = atoi(argv[3]);
     int nURL = getURLNumber();
-    // printf("The number of URLs are: %d\n",nURL);
     PRNode *PRList = createPRList(nURL);
-    // showPRList(PRList, nURL);
+    // showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
     Graph web = createGraph(PRList, nURL);
     // showGraph(web);
+
     getOutDegree(web, PRList, nURL);
-    // showPRList(PRList, nURL);
+    // showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
     getPagerank(d, minDifferece, maxIterations, web, PRList, nURL);
-    // showPRList(PRList, nURL);
+    // showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
     sortPRList(PRList, nURL);
-    // howPRList(PRList, nURL);
+    // showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
     writePRList(PRList, nURL);
     freeGraph(web);
     free(PRList);
@@ -65,7 +72,8 @@ int writePRList(PRNode *PRList, int nURL) {
     int i;
     FILE *pagerankList = fopen("pagerankList.txt", "w");
     for (i = 0; i < nURL; i++) {
-        fprintf(pagerankList, "%s, %d, %.7f\n", PRList[i].url, PRList[i].degree, PRList[i].PR);
+        fprintf(pagerankList, "%s, %d, %.7f\n",
+                PRList[i].url, PRList[i].degree, PRList[i].PR);
     }
     fclose(pagerankList);
     return 1;
@@ -135,15 +143,8 @@ int getOutDegree(Graph web, PRNode *PRList, int nURL) {
 }
 
 
-void showPRList(PRNode *PRList, int nURL) {
-    int i;
-    for (i = 0; i < nURL; i++) {
-        printf("%s, %d, %.7f\n", PRList[i].url, PRList[i].degree, PRList[i].PR);
-    }
-}
-
-
-int getPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNode *PRList, int nURL) {
+int getPagerank(float d, float minDifferece, int maxIterations,
+                Graph web, PRNode *PRList, int nURL) {
     float *newPR = malloc(sizeof(float) * nURL);    // PR used in calculation
     assert(newPR != NULL);
     float incomingPR = 0;   // PR from all incoming links, not random jump
@@ -156,14 +157,16 @@ int getPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNod
 
     // initialise PR
     for (v = 0; v < nURL; v++) {
-        PRList[v].PR = 1.0 / nURL;      // must write 1.0 not 0; or the result will be integer
+        // must write 1.0 not 0; or the result will be integer
+        PRList[v].PR = 1.0 / nURL;
         newPR[v] = 1.0 / nURL;
     }
 
     // calculate PR by iterations
     iteration = 0;
     totalDiff = minDifferece;
-    while ((iteration < maxIterations) && (totalDiff >= minDifferece)) {
+    while ((iteration < maxIterations)
+            && (totalDiff >= minDifferece)) {
         iteration++;
         // calculate the PR and store it into newPR[]
         for (v = 0; v < nURL; v++) {
@@ -223,4 +226,20 @@ int sortPRList(PRNode *PRList, int nURL) {
         }
     }
     return 1;
+}
+
+
+void showDebugInfo(float d, float minDifferece,
+                    int maxIterations, PRNode *PRList, int nURL) {
+    int i;
+    printf("Your input parameters are:\n");
+    printf("    d = %.7f\n", d);
+    printf("    minDifferece = %.7f\n", minDifferece);
+    printf("    maxIterations = %d\n", maxIterations);
+    printf("The number of URLs is: %d\n", nURL);
+    printf("The content in PRList is:\n");
+    for (i = 0; i < nURL; i++) {
+        printf("    %s, %d, %.7f\n", PRList[i].url,
+                PRList[i].degree, PRList[i].PR);
+    }
 }

@@ -1,4 +1,15 @@
-// used to form a list to store the result
+// File: pagerank.h
+// Author: Jack Jiang (z5129432)
+// Data: 2018x1
+// Description:
+//     for COMP9024 Assignment 2
+// Reference:
+//     https://www.cse.unsw.edu.au/~cs9024/18x1/assn/assn2/Ass2.html
+
+#ifndef PAGERANK_H
+#define PAGERANK_H
+
+// a structure used to create PRList
 typedef struct PRNode {
     char url[5];
     int degree;
@@ -25,9 +36,6 @@ PRNode* createPRList(int nURL);
     // url11, 3, 0.0733884
 int writePRList(PRNode *PRList, int nURL);
 
-// just print PRList on the screen
-void showPRList(PRNode *PRList, int nURL);
-
 // generate a graph data structure
 // return the pointer of the graph
 Graph createGraph(PRNode *PRList, int nURL);
@@ -39,7 +47,14 @@ int getURLIndex(char* url, PRNode *PRList, int nURL);
 int getOutDegree(Graph web, PRNode *PRList, int nURL);
 
 // calculate pagerank and put them into PRList
-int getPagerank(float d, float minDifferece, int maxIterations, Graph web, PRNode *PRList, int nURL);
+int getPagerank(float d, float minDifferece, int maxIterations,
+                Graph web, PRNode *PRList, int nURL);
 
 // sort PRList in descending order of PR value
 int sortPRList(PRNode *PRList, int nURL);
+
+// just print the debug information on the screen
+void showDebugInfo(float d, float minDifferece,int maxIterations,
+                    PRNode *PRList, int nURL);
+
+#endif

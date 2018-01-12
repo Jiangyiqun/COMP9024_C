@@ -1,10 +1,19 @@
-// Graph ADT
-// Adjacency Matrix Representation ... COMP9024 17s2
-// Modified by Jack Jiang(z5129432) to a directed graph ADT
-#include "directedGraph.h"
+// File: directedGraph.c
+// Author: Jack Jiang (z5129432)
+// Data: 2018x1
+// Description:
+//     An Adjacency Matrix Representation for directed graph
+//     This file is originally come form COMP9024 lecture
+//     Jack Jiang modified it to a directed graph representation.
+//     and add a function to get the outgoing degree of any vertice
+// Reference:
+//     https://www.cse.unsw.edu.au/~cs9024/18x1/slides/week03a/progs/Graph.c
+
+
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "directedGraph.h"
 
 typedef struct GraphRep {
    int  **edges;   // adjacency matrix

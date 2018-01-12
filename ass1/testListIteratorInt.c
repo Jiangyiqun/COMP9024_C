@@ -1,5 +1,8 @@
 /*
-  client to test listIteratorInt.
+ /*
+ * Project: pagerank
+ * File: home/z5129432/Github/COMP9024_C/ass1/testListIteratorInt.c
+ */ client to test listIteratorInt.
   Written by Ashesh Mahidadia, Dec 2017
   Moded by Jack Jiang, Jan 2018
 */
