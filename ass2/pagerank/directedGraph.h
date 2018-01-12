@@ -7,7 +7,7 @@
 //     Jack Jiang modified it to a directed graph representation.
 //     and add a function to get the outgoing degree of any vertice
 // Reference:
-//     https://www.cse.unsw.edu.au/~cs9024/18x1/slides/week03a/progs/Graph.c
+//     https://www.cse.unsw.edu.au/~cs9024/18x1/slides/week03a/progs/Graph.h
 
 #ifndef DIRECTED_GRAPH_H
 #define DIRECTED_GRAPH_H
