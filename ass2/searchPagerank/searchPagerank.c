@@ -14,11 +14,23 @@
 
 #define MAX_URL_LENGTH 6    // 5 char plus a terminator
 #define MAX_WORD_LENGTH 50
+#define MAX_LINE_LENGTH 50
 
-int main(int argc, char *argv[]) {
-    int nURL = getURLNumber();
-    char *URLList = createURLList(nURL);
-    
+int main(void) {
+    // int nURL = getURLNumber();
+    // char *URLList = createURLList(nURL);
+    char line[MAX_LINE_LENGTH];
+    char *word;
+    FILE *indexFile = fopen("invertedIndex.txt", "r");
+    while (fgets(line, MAX_LINE_LENGTH, indexFile) != NULL) {
+        printf("Let's start a new line:\n");
+        word = strtok(line, " \n");
+        while (word != NULL) {
+            printf("    %s\n", word);
+            word = strtok(NULL, " \n");
+        }
+    }
+    fclose(indexFile);
     return EXIT_SUCCESS;
 }
 
