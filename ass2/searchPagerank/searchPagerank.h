@@ -9,11 +9,11 @@
 #ifndef SEARCH_PAGERANK_H
 #define SEARCH_PAGERANK_H
 
-// return the number of URLs in collection.txt
-int getURLNumber();
+// read url from invertedList.txt into a double linked list
+// return the address of the double linked list
+DLList readInvertedIndex();
 
-// create a array of URL, and return its address
-char *createURLList(int nURL);
-
+// show the top maxLine page of indexList
+void showInvertedIndex(DLList indexList, int maxLine);
 
 #endif
