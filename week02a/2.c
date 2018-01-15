@@ -1,16 +1,17 @@
-// p has not initialised before being called
 #include <stdio.h>
 #include <stdlib.h>
 
-void func(int *a) {
-   a = malloc(sizeof(int));
+void func(int **a) {
+   printf("a is %p\n", a);
+   printf("*a is %p\n", *a);
+   *a = malloc(sizeof(int));
 }
 
 int main(void) {
    int *p;
-   func(p);
+   printf("&p is %p\n", &p);
+   func(&p);
    *p = 6;
-   printf("%d\n",*p);
    free(p);
    return 0;
 }

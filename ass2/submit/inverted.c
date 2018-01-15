@@ -11,7 +11,7 @@
 #include<assert.h>
 #include<string.h>
 #include<ctype.h>
-#include"invertedIndex.h"
+#include"inverted.h"
 
 #define MAX_URL_LENGTH 6    // 5 char plus a terminator
 #define MAX_WORD_LENGTH 50

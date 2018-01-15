@@ -1,3 +1,0 @@
-design  url21 url31
-mars  url21 url33
-vegetation  url31
