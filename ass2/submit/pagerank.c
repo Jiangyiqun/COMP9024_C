@@ -12,8 +12,8 @@
 #include<assert.h>
 #include"directedGraph.h"
 #include"pagerank.h"
+#include "lengthDefine.h"
 
-#define MAX_URL_LENGTH 6    // 5 char plus a terminator
 
 
 int main(int argc, char *argv[]) {

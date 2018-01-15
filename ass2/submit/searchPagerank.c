@@ -12,13 +12,11 @@
 #include<assert.h>
 #include "strDlList.h"
 #include "searchPagerank.h"
-
-#define MAX_URL_LENGTH 6    // 5 char plus a terminator
-#define MAX_WORD_LENGTH 50
-#define MAX_LINE_LENGTH 1000
+#include "lengthDefine.h"
 
 int main(int argc, char* argv[]) {
     DLList indexList = readInvertedIndex();
+    int keyLeft = argc - 1; // the number of keywords that need to be found in index
     // showDLList(indexList);
     // remove unmatched URLs using invertedIndex.txt
     if (argc > 1) {
@@ -27,16 +25,20 @@ int main(int argc, char* argv[]) {
         int i;  // index for keyword (argv[])
         int j;  // index ofr indexList
         int length; // indexList's length
-
+        
+        // read "invertedIndex.txt" line by line
         while (fgets(line, MAX_LINE_LENGTH, txt) != NULL) {
-            // in every line of invertedIndex, search each input keyword
+            // in every line of invertedIndex, search for each input keywords
             for (i = 1; i < argc; i++) {
                 if (strstr(line, argv[i]) != NULL) {
-                    // in every line including a keyword, scan for each URL in indexList
+                    keyLeft--;  // a keyword has been found
+                    // in every line including a keyword, search for each URL in indexList
                     resetDLList(indexList);
                     length = DLListLength(indexList);
                     for (j = 0; j < length; j++) {
-                        // if url is not in the line, then delete this url
+                        // if every URL in indexList is not in the line
+                        // This mean that this URL doesn't include any of keywords
+                        // then we delete this url in indexList
                         if (strstr(line, DLListCurrent(indexList)) == NULL) {
                             DLListDelete(indexList);
                         } else {
@@ -48,7 +50,10 @@ int main(int argc, char* argv[]) {
         }
         fclose(txt);
     }
-    showInvertedIndex(indexList, 30);
+    // only show the result when all keyword has been found in index
+    if (keyLeft == 0) { 
+        showInvertedIndex(indexList, 30);
+    }  
     freeDLList(indexList);
     return EXIT_SUCCESS;
 }

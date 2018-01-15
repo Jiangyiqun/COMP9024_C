@@ -1,4 +1,4 @@
-// File: invertedIndex.h
+// File: inverted.h
 // Author: Jack Jiang (z5129432)
 // Data: 2018x1
 // Description:
@@ -23,5 +23,8 @@ int readIndex(char *URLList, int nURL);
 // 2. remove trailing punctuation, including:
 //      '.' (dot), ',' (comma), ';' (semicolon), ? (question mark) 
 char *normalise(char* word);
+
+// wirte invertedIndex.txt file
+void writeIndex();
 
 #endif

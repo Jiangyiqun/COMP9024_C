@@ -1,4 +1,4 @@
-// File: invertedIndex.c
+// File: inverted.c
 // Author: Jack Jiang (z5129432)
 // Data: 2018x1
 // Description:
@@ -12,14 +12,13 @@
 #include<string.h>
 #include<ctype.h>
 #include"inverted.h"
-
-#define MAX_URL_LENGTH 6    // 5 char plus a terminator
-#define MAX_WORD_LENGTH 50
+#include"lengthDefine.h"
 
 int main(void) {
     int nURL = getURLNumber();
     char *URLList = createURLList(nURL);
     readIndex(URLList, nURL);
+    writeIndex(0);
     free(URLList);
     return EXIT_SUCCESS;
 }
@@ -68,7 +67,7 @@ int readIndex(char *URLList, int nURL) {
         strcpy(pageFile, &URLList[i * MAX_URL_LENGTH]);
         strcat(pageFile, extensionName);
         // debug
-        printf("in file %s\n", pageFile);
+        //printf("in file %s\n", pageFile);
         urlFile = fopen(pageFile, "r");
         hashEncountered = 0;
         while (fscanf(urlFile, "%s", word) != EOF) {
@@ -83,7 +82,7 @@ int readIndex(char *URLList, int nURL) {
             } else {
                 if (hashEncountered == 3){
                     // debug
-                    printf("%s\n", normalise(word));
+                    //printf("%s\n", normalise(word));
                 }
             }
         }
@@ -111,4 +110,12 @@ char *normalise(char* word) {
         i--;
     }
     return word;
+}
+
+void writeIndex() {
+    FILE *Index = fopen("invertedIndex.txt", "w");
+    fprintf(Index, "design  url11 url21 url22\n");
+    fprintf(Index, "mars  url11 url21\n");
+    fprintf(Index, "vegetation  url11 url21\n\n");
+    fclose(Index);
 }

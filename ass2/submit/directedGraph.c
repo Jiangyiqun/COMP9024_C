@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "directedGraph.h"
+#include "lengthDefine.h"
 
 typedef struct GraphRep {
    int  **edges;   // adjacency matrix

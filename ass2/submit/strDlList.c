@@ -6,7 +6,7 @@
 //	 Modified by Jack Jiang (z5129432), Jan 2018
 // Data: 2018x1
 // Description:
-//	 Implementation of doubly-linked list of string
+//	 Implementation of doubly-linked list of url
 //   for COMP9024 Assignment 2
 // Reference:
 //     https://www.cse.unsw.edu.au/~cs9024/18x1/slides/week02a/progs/dllist.zip
@@ -18,13 +18,12 @@
 #include <assert.h>
 #include <string.h>
 #include "strDlList.h"
-
-#define STRING_LENGTH 10	// the max string length
+#include "lengthDefine.h"
 
 
 // data structures representing DLList
 typedef struct DLListNode {
-	char   value[STRING_LENGTH];  // value of this list item (string)
+	char   value[MAX_URL_LENGTH];  // value of this list item (string)
 	struct DLListNode *prev;
 	               // pointer previous node in list
 	struct DLListNode *next;
