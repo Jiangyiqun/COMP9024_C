@@ -1,9 +1,9 @@
-// Binary Search Tree ADT implementation ... COMP9024 17s2
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "BSTree.h"
+#include "strBSTree.h"
 
 #define data(tree)  ((tree)->data)
 #define left(tree)  ((tree)->left)

@@ -1,8 +1,8 @@
-treeLab : treeLab.o BSTree.o
-	gcc -o treeLab treeLab.o BSTree.o
+treeTest : treeTest.o strBSTree.o
+	gcc -o treeTest treeTest.o strBSTree.o
 
-treeLab.o : treeLab.c BSTree.h
-	gcc -Wall -Werror -c treeLab.c
+treeTest.o : treeTest.c strBSTree.h
+	gcc -Wall -Werror -c treeTest.c
 
-BSTree.o : BSTree.c BSTree.h
-	gcc -Wall -Werror -c BSTree.c
+strBSTree.o : strBSTree.c strBSTree.h
+	gcc -Wall -Werror -c strBSTree.c
