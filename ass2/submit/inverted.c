@@ -42,6 +42,7 @@ int getURLNumber() {
 char *createURLList(int nURL) {
     char url[MAX_URL_LENGTH];
     int i;
+    int swapOccur = 1; // 1: swap occurs; 0: swap doesn't occur
     char *URLList = malloc(sizeof(char) * MAX_URL_LENGTH * nURL);
     assert(URLList != NULL);
     FILE *collection = fopen("collection.txt", "r");
@@ -49,6 +50,17 @@ char *createURLList(int nURL) {
         strcpy(&URLList[i * MAX_URL_LENGTH], url);
     }
     fclose(collection);
+    while (swapOccur == 1) {
+        swapOccur = 0;
+        for (i = 1; i < nURL; i++) {
+            if (strcmp(&URLList[(i-1) * MAX_URL_LENGTH], &URLList[i * MAX_URL_LENGTH]) > 0) {
+                swapOccur = 1;   
+                strcpy(url, &URLList[i * MAX_URL_LENGTH]);
+                strcpy(&URLList[i * MAX_URL_LENGTH], &URLList[(i-1) * MAX_URL_LENGTH]);
+                strcpy(&URLList[(i-1) * MAX_URL_LENGTH], url);
+            }
+        }
+    }
     // debug
     // printf("The %d URLList is:\n", nURL);
     // for (i =0; i < nURL * MAX_URL_LENGTH; i += MAX_URL_LENGTH) {
