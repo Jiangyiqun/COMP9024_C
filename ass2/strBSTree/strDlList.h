@@ -38,12 +38,19 @@ void showDLList(DLList L);
 // display items from a DLList, space separated
 void showDLListWithoutComma(DLList L);
 
+// print items from a DLList, space separated
+void printDLList(DLList L, FILE *Index);
+
 // return item at current position
 char *DLListCurrent(DLList);
 
 // insert an item after current item
 // new item becomes current item
 void DLListAfter(DLList L, char *it);
+
+// add element without duplicate
+// the last element become current after added
+void DLListAdd(DLList L, char *it);
 
 // delete current item
 // new item becomes item following current

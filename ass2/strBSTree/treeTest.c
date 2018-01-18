@@ -7,6 +7,8 @@
 int main(void) {
     Tree mytree = newTree();
     mytree = TreeInsert(mytree, "max", "url21");
+    mytree = TreeInsert(mytree, "max", "url21");
+    mytree = TreeInsert(mytree, "max", "url21");
     mytree = TreeInsert(mytree, "action", "url21");
     mytree = TreeInsert(mytree, "biubiubiu", "url32");
     mytree = TreeInsert(mytree, "max", "url32");

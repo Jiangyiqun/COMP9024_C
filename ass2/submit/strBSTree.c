@@ -85,7 +85,7 @@ Tree TreeInsert(Tree t, char* it, char* url) {
    else if (strcmp(it, t->data) > 0)            // it is large than current node
       t->right = TreeInsert(t->right, it, url);      // insert into right
    else                                         // if they are the same
-      DLListAfter(t->urlList, url);   // add url to current DLList
+      DLListAdd(t->urlList, url);   // add url to current DLList without duplicate
    return t;
 }
 

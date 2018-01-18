@@ -14,6 +14,6 @@
 DLList readInvertedIndex();
 
 // show the top maxLine page of indexList
-void showInvertedIndex(DLList indexList, int maxLine);
+void showInvertedIndex(DLList indexList);
 
 #endif

@@ -48,6 +48,10 @@ char *DLListCurrent(DLList);
 // new item becomes current item
 void DLListAfter(DLList L, char *it);
 
+// add element without duplicate
+// the last element become current after added
+void DLListAdd(DLList L, char *it);
+
 // delete current item
 // new item becomes item following current
 // if current was last, current becomes new last

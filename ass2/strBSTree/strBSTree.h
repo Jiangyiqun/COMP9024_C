@@ -14,5 +14,5 @@ Tree newTree();        // create an empty Tree
 void freeTree(Tree);   // free memory associated with Tree
 void showTree(Tree);   // display a Tree (sideways)
 Tree TreeInsert(Tree t, char* it, char* url);   // insert a new item into a Tree
-
+void printTree(Tree t, FILE *Index); // print tree
 

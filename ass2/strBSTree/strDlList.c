@@ -124,6 +124,22 @@ void showDLListWithoutComma(DLList L)
 }
 
 
+// print items from a DLList, space separated
+void printDLList(DLList L, FILE *Index)
+{
+	assert(L != NULL);
+	DLListNode *curr;
+	int count = 0;
+	for (curr = L->first; curr != NULL; curr = curr->next){
+		count++;
+		if(count > 1) {
+			fprintf(Index," ");
+		}
+		fprintf(Index,"%s",curr->value);
+	}
+	fprintf(Index,"\n");
+}
+
 // return item at current position
 char *DLListCurrent(DLList L)
 {
@@ -156,6 +172,26 @@ void DLListAfter(DLList L, char *it)
 	L->curr = new;
 	L->nitems++;
 }
+
+// add element without duplicate
+// the last element become current after added
+void DLListAdd(DLList L, char *it)
+{
+    assert(L != NULL); 
+    DLListNode *curr;
+    // list travelsal
+    // after iteration, curr will become NULL if no duplicated value found
+    // if has some duplicated value, curr will not be NULL
+	for (curr = L->first; curr != NULL; curr = curr->next){
+        if (strcmp(curr->value, it) == 0) {
+            break;      // has duplicated value of it
+        }
+	}
+	if (curr == NULL) { // no duplicated value found
+	    DLListAfter(L, it);
+	}
+}
+
 
 // delete current item
 // new item becomes item following current

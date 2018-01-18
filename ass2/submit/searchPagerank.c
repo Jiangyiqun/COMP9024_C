@@ -14,6 +14,8 @@
 #include "searchPagerank.h"
 #include "lengthDefine.h"
 
+#define RESULT_MAX_LINE 30
+
 int main(int argc, char* argv[]) {
     DLList indexList = readInvertedIndex();
     int keyLeft = argc - 1; // the number of keywords that need to be found in index
@@ -52,7 +54,7 @@ int main(int argc, char* argv[]) {
     }
     // only show the result when all keyword has been found in index
     if (keyLeft == 0) { 
-        showInvertedIndex(indexList, 30);
+        showInvertedIndex(indexList);
     }  
     freeDLList(indexList);
     return EXIT_SUCCESS;
@@ -72,11 +74,11 @@ DLList readInvertedIndex() {
 }
 
 
-void showInvertedIndex(DLList indexList, int maxLine) {
+void showInvertedIndex(DLList indexList) {
     int i;
 
     resetDLList(indexList);
-	for (i = 0; (i < DLListLength(indexList)) && (i < maxLine); i++) {
+	for (i = 0; (i < DLListLength(indexList)) && (i < RESULT_MAX_LINE); i++) {
 		printf("%s\n", DLListCurrent(indexList));
 		moveNextDLList(indexList);
 	}
