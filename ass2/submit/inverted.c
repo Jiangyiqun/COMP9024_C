@@ -11,15 +11,18 @@
 #include<assert.h>
 #include<string.h>
 #include<ctype.h>
+#include"strBSTree.h"
 #include"inverted.h"
 #include"lengthDefine.h"
 
 int main(void) {
     int nURL = getURLNumber();
     char *URLList = createURLList(nURL);
-    readIndex(URLList, nURL);
-    writeIndex(0);
+    Tree URLIndex = newTree();
+    URLIndex = readIndex(URLIndex, URLList, nURL);
+    writeIndex(URLIndex);
     free(URLList);
+    freeTree(URLIndex);
     return EXIT_SUCCESS;
 }
 
@@ -54,7 +57,7 @@ char *createURLList(int nURL) {
     return URLList;
 }
 
-int readIndex(char *URLList, int nURL) {
+Tree readIndex(Tree URLIndex, char *URLList, int nURL) {
     int i;
     char pageFile[MAX_URL_LENGTH + 4];  // filename such as "url11.txt"
     char extensionName[] = ".txt";
@@ -83,13 +86,14 @@ int readIndex(char *URLList, int nURL) {
                 if (hashEncountered == 3){
                     // debug
                     //printf("%s\n", normalise(word));
+                    //printf("insert %s and %s into tree\n", normalise(word), &URLList[i * MAX_URL_LENGTH]);
+                    URLIndex = TreeInsert(URLIndex, normalise(word), &URLList[i * MAX_URL_LENGTH]);
                 }
             }
         }
         fclose(urlFile);
-        break;
     }
-    return 1;
+    return URLIndex;
 }
 
 char *normalise(char* word) {
@@ -112,10 +116,8 @@ char *normalise(char* word) {
     return word;
 }
 
-void writeIndex() {
+void writeIndex(Tree URLIndex) {
     FILE *Index = fopen("invertedIndex.txt", "w");
-    fprintf(Index, "design  url11 url21 url22\n");
-    fprintf(Index, "mars  url11 url21\n");
-    fprintf(Index, "vegetation  url11 url21\n\n");
+    printTree(URLIndex, Index);
     fclose(Index);
 }

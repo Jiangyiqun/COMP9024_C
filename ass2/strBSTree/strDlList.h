@@ -38,9 +38,6 @@ void showDLList(DLList L);
 // display items from a DLList, space separated
 void showDLListWithoutComma(DLList L);
 
-// print items from a DLList, space separated
-void printDLList(DLList L, FILE *Index);
-
 // return item at current position
 char *DLListCurrent(DLList);
 

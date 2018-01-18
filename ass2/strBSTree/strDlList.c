@@ -124,22 +124,6 @@ void showDLListWithoutComma(DLList L)
 }
 
 
-// print items from a DLList, space separated
-void printDLList(DLList L, FILE *Index)
-{
-	assert(L != NULL);
-	DLListNode *curr;
-	int count = 0;
-	for (curr = L->first; curr != NULL; curr = curr->next){
-		count++;
-		if(count > 1) {
-			fprintf(Index," ");
-		}
-		fprintf(Index,"%s",curr->value);
-	}
-	fprintf(Index,"\n");
-}
-
 // return item at current position
 char *DLListCurrent(DLList L)
 {

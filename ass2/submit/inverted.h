@@ -16,7 +16,7 @@ int getURLNumber();
 char *createURLList(int nURL);
 
 // read words form urlxx.txt
-int readIndex(char *URLList, int nURL);
+Tree readIndex(Tree URLIndex, char *URLList, int nURL);
 
 // normalise word, which will do these two things:
 // 1. converting all characters to lowercase,
@@ -25,6 +25,6 @@ int readIndex(char *URLList, int nURL);
 char *normalise(char* word);
 
 // wirte invertedIndex.txt file
-void writeIndex();
+void writeIndex(Tree URLIndex);
 
 #endif

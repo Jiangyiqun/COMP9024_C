@@ -2,18 +2,16 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "BSTree.h"
+#include "strBSTree.h"
 
 int main(void) {
     Tree mytree = newTree();
-    TreeInsert(mytree, 4);
-    TreeInsert(mytree, 5);
-    TreeInsert(mytree, 1);
-    TreeInsert(mytree, 64);
-    TreeInsert(mytree, 9);
-    TreeInsert(mytree, 12);
-    TreeInsert(mytree, 5);
-    TreeInsert(mytree, 7);
+    mytree = TreeInsert(mytree, "max", "url21");
+    mytree = TreeInsert(mytree, "action", "url21");
+    mytree = TreeInsert(mytree, "biubiubiu", "url32");
+    mytree = TreeInsert(mytree, "max", "url32");
+    mytree = TreeInsert(mytree, "zoo", "url21");   
+    mytree = TreeInsert(mytree, "good", "url44");
     showTree(mytree);
     freeTree(mytree);
     return EXIT_SUCCESS;
