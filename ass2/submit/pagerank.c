@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
     getPagerank(d, minDifferece, maxIterations, web, PRList, nURL);
     // showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
     sortPRList(PRList, nURL);
-    // showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
+    //showDebugInfo(d, minDifferece, maxIterations, PRList, nURL);
     writePRList(PRList, nURL);
     freeGraph(web);
     free(PRList);
@@ -197,8 +197,8 @@ int getPagerank(float d, float minDifferece, int maxIterations,
         }
     }
     // debug
-    // printf("this is the %d interation\n", iteration);
-    // printf("the totalDiff is the %.7f\n", totalDiff);
+    //printf("this is the %d interation\n", iteration);
+    //printf("the totalDiff is the %.7f\n", totalDiff);
     
     free(newPR);
     return 1;
@@ -232,6 +232,7 @@ int sortPRList(PRNode *PRList, int nURL) {
 void showDebugInfo(float d, float minDifferece,
                     int maxIterations, PRNode *PRList, int nURL) {
     int i;
+    float sum = 0;
     printf("Your input parameters are:\n");
     printf("    d = %.7f\n", d);
     printf("    minDifferece = %.7f\n", minDifferece);
@@ -242,4 +243,8 @@ void showDebugInfo(float d, float minDifferece,
         printf("    %s, %d, %.7f\n", PRList[i].url,
                 PRList[i].degree, PRList[i].PR);
     }
+    for (i = 0; i < nURL; i++) {
+        sum += PRList[i].PR;
+    }
+    printf("The sum of pagerank is: %f\n", sum);
 }
