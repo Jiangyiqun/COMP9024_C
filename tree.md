@@ -188,5 +188,38 @@ RotateRight(tree)
     return newRoot
 ```
 
-### Insert at root
+### Rebalance tree
 
+```
+BalanceTreeInsert(tree , item):
+
+    tree = TreeInsert(tree, item)
+    if #node(tree) mod k = 0 then
+        tree = rebalance(tree)
+    end if
+    return tree
+
+
+rebalance(tree):
+
+    if nodes(tree) >= 3 then
+        tree = partition(tree, [n/2])
+        left(tree) = rebalance(left(tree))
+        right(tree) = rebalance(right(tree))
+    end if 
+    return tree
+
+
+partition(tree, i):
+
+    middle = nodes(left(tree))
+    if i < middle then
+        left(tree) = partition(tree, i)
+        tree = rotationRight(tree)
+    else if i > middle then
+        right(tree) = partition(tree, i - (m + 1))
+        tree = rotationLeft(tree)
+    end if
+    return tree
+
+```
