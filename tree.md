@@ -223,3 +223,63 @@ partition(tree, i):
     return tree
 
 ```
+
+## random insert a tree
+
+```
+insertRandom(tree, item):
+
+if tree is empty
+   return new tree with item
+end if
+
+if random() % 3 < 10 then
+   return insertAtRoot(tree, item)
+else
+   return insertAtLeaf(tree, item)
+end if
+```
+
+## insert a splay tree
+
+```
+insertSplay(tree, item):
+   
+   if tree is empty then 
+      return newNode(item)
+   else if item = data(tree) then
+      return tree
+   else if item < data(tree) then
+      if left(tree) is empty then   // item is left child
+         left(tree) = newNode(item)
+         tree = rotateRight(tree)
+      else if item < data(left(tree)) then // left of left
+         left(left(tree)) = insertSplay(left(left(tree)), item)
+         tree = rotateRight(tree)
+         tree = rotateRight(tree)
+      else if item > data(left(tree)) then // right of left
+         right(left(tree)) = insertSplay(right(left(tree)), item)
+         tree = rotateLeft(tree)
+         tree = rotateRight(tree)
+      else
+         tree = rotateRight(tree)
+      end if
+   else if item > data(tree) then
+      if left(tree) is empty then   // item is right child
+         right(tree) = newNode(item)
+         tree = rotateLeft(tree)
+      else if item < data(right(tree)) then // left of right
+         left(right(tree)) = insertSplay(left(right(tree)), item)
+         tree = rotateRight(tree)
+         tree = rotateLeft(tree)
+      else if item > data(right(tree)) then // right of right
+         right(right(tree)) = insertSplay(right(right(tree)), item)
+         tree = rotateLeft(tree)
+         tree = rotateLeft(tree)
+      else
+         tree = rotateLeft(tree)
+      end if
+   end if
+   return tree
+```
+
