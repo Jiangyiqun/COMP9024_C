@@ -243,6 +243,7 @@ end if
 ## insert a splay tree
 
 ```
+// total: O(nlogn)
 insertSplay(tree, item):
    
    if tree is empty then 
@@ -283,3 +284,23 @@ insertSplay(tree, item):
    return tree
 ```
 
+## AVR Tree
+
+### AVR Tree insert
+
+```
+insertAVL(tree, item):
+
+   if tree is empty then
+      return newNode(item)
+    else if item = data(tree) then
+      return tree
+    else
+      if item < data(tree) then
+         left(tree) = insertAVL(left(tree), item)
+      else if item > data(tree) then
+         right(tree) = 
+      end if
+    return tree
+    end if
+```
