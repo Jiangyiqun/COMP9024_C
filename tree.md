@@ -1,21 +1,17 @@
 # Everything about tree
 
-## Kinds of tree
+## Search data structure
 
-- m-ary tree
-- ordered tree
-- balanced tree
-- degenerate tree
-
-## Binary Search Tree
-
-- binary tree
-- orderd tree
-
-## properties of BST
-
-- Level of node: path length from root to node
-- height of tree: max length from root to leaf
+searching algorithm | wst search | wst insert | avg search | avg insert
+--------------------|------------|------------|------------|-----------
+sequential search   |    N       |     N      |     N      |    N
+binary search       |    logN    |     N      |     logN   |    N
+BST                 |    N       |     N      |     logN   |    logN
+B-Tree              |   logN     |    logN    |     logN   |    logN
+RB-Tree             |   logN     |    logN    |     logN   |    logN
+AVL-Tree            |   logN     |    logN    |     logN   |    logN
+Splay-Tree          |   logN     |    logN    | logN(amort)|    logN(amort)
+hash table          |   logN     |    logN    |     1      |    1
 
 ## Representation of BST
 
@@ -296,10 +292,23 @@ insertAVL(tree, item):
     else if item = data(tree) then
       return tree
     else
+      // insert
       if item < data(tree) then
          left(tree) = insertAVL(left(tree), item)
       else if item > data(tree) then
-         right(tree) = 
+         right(tree) = insertAVL(right(tree), item)
+      end if
+      // rotate
+      if height(left(tree)) - height(right(tree)) > 1 then
+        if item > date(left(tree)) then // on the right
+            left(tree) = rotateLeft(left(tree))
+        end if
+        tree = rotateRight(tree)
+      else if height(right(tree)) - height(left(tree)) > 1 then
+        if item < data(right(tree)) then
+            right(tree) = rotateRight(right(tree))
+        end if
+        tree = rotateLeft(tree)
       end if
     return tree
     end if
