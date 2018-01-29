@@ -9,9 +9,11 @@
 #ifndef PAGERANK_H
 #define PAGERANK_H
 
+#include "lengthDefine.h"
+
 // a structure used to create PRList
 typedef struct PRNode {
-    char url[5];
+    char url[MAX_URL_LENGTH];
     int degree;
     float PR;
 } PRNode;

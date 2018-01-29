@@ -9,11 +9,23 @@
 #ifndef SEARCH_PAGERANK_H
 #define SEARCH_PAGERANK_H
 
+// a structure used to create indexList
+typedef struct indexList {
+    char URL[MAX_URL_LENGTH];
+    float PR;
+} indexList;
+
+// get the number of URL
+int getNumberOfURL();
+
 // read url from invertedList.txt into a double linked list
 // return the address of the double linked list
-DLList readInvertedIndex();
+indexList* readInvertedIndex(int nURL);
 
 // show the top maxLine page of indexList
-void showInvertedIndex(DLList indexList);
+void showInvertedIndex(indexList* myList, int nURL);
+
+// sort the indexList by PR
+indexList* sortInvertedIndex(indexList* myList, int nURL);
 
 #endif
