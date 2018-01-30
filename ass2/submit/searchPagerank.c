@@ -31,9 +31,12 @@ int main(int argc, char* argv[]) {
         while (fgets(line, MAX_LINE_LENGTH, txt) != NULL) {
             // in every line of invertedIndex, search for each input keywords
             for (i = 1; i < argc; i++) {
+                // in order to match the whole keyword(not part of it)
+                // first append an space to the keyword (to prevent only matching the substring of the keyword)
+                // second the return pointer must be the start of the line (to prevent matching the surfix of the keyword)
                 strcpy(keyword, argv[i]);
                 strcat(keyword, " ");
-                if (strstr(line, keyword) != NULL) {
+                if (strstr(line, keyword) == line) {
                     // in each line contains keyword, search for URLs that in myList
                     for (j = 0; j < nURL; j++) {
                         if (strstr(line, myList[j].URL) != NULL) {
