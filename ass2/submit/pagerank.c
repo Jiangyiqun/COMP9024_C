@@ -176,9 +176,9 @@ int getPagerank(float d, float minDifferece, int maxIterations,
                 if (adjacent(web, w, v)) {
                     incomingPR += PRList[w].PR / PRList[w].degree;
                 }
+            }
             // calculate the overall PR of v
             newPR[v] = ((1.0 - d) / nURL) + (d * incomingPR);
-            }
         }
 
         // calculate the total diff
