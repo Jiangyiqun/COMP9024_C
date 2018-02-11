@@ -1,0 +1,38 @@
+### 4
+
+void joinPQueue(Vertex v)
+{
+    assert(PQueue.length < MAX_NODES);
+    int i;
+    for (i = 0; i < PQueue.length ; i++) {
+        if (PQueue.item[i] == v) {
+            return;
+        }
+    }
+    PQueue.item[i] = v;
+    PQueue.length++;
+}
+
+
+Vertex leavePQueue(int priority[]) {
+    assert(PQueueT.length >= 1);
+
+    int i;
+    int highestPriorityIndex = 0;
+    int highestPriorityValue = PQueue.item[0];
+
+    for (i = 1; i < PQueue.length; i++) {
+        if (priority[PQueue.item[i]] < highestPriorityValue) {
+            highestPriorityValue = priority[PQueue.item[i]];
+            highestPriorityIndex = i;
+        }
+    }
+    Vertex highestPriorityVertex = PQueue.item[highestPriorityIndex];
+    PQueue.item[highestPriorityIndex] = PQueue.item[PQueue.length - 1];
+    PQueue.length--;
+    return highestPriorityVertex;
+}
+
+vSet = {7}
+dist = {0,  5,  4,  5,  7,  7,  10,  13}
+pred = {-1, 0,  0,  2,  2,  1,  5, 5}

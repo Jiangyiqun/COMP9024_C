@@ -1,0 +1,15 @@
+TreeTraversal (tree, style):
+    if (tree == NULL) {
+        return
+    }
+    if (style == "NLR") {
+        print(tree->data);
+    }
+    TreeTraversal (left(tree), style);
+    if (style == "LNR") {
+        print(tree->data);
+    }
+    TreeTraversal (right(tree), style);
+    if (style == "LRN") {
+        print(tree->data);
+    }
