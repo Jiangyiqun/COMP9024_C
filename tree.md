@@ -1,6 +1,6 @@
 # Everything about tree
 
-## Search data structure
+## Search data structure comparison
 
 searching algorithm | wst search | wst insert | avg search | avg insert
 --------------------|------------|------------|------------|-----------
@@ -10,10 +10,12 @@ BST                 |    N       |     N      |     logN   |    logN
 B-Tree              |   logN     |    logN    |     logN   |    logN
 RB-Tree             |   logN     |    logN    |     logN   |    logN
 AVL-Tree            |   logN     |    logN    |     logN   |    logN
-Splay-Tree          |   logN     |    logN    | logN(amort)|    logN(amort)
+Splay-Tree          |   N        |       N    | logN(amort)|    logN(amort)
 hash table          |   logN     |    logN    |     1      |    1
 
-## Representation of BST
+## BST
+
+### Representation
 
 ```
 // a Tree is represented by a pointer to its root node
@@ -33,7 +35,7 @@ typedef struct Node {
 
 ```
 
-## Search
+### Search
 
 ```
 TreeSearch(tree, item):
@@ -54,7 +56,7 @@ TreeSearch(tree, item):
     end if
 ```
 
-## Insert
+### Insert
 
 ```
 TreeInsert(tree, item):
@@ -72,7 +74,7 @@ TreeInsert(tree, item):
         return TreeInsert(left(tree), item)
     end if
     if item > data(tree) then
-        return TreeInsert(left(tree), item)
+        return TreeInsert(right(tree), item)
     end if
 ```
 
@@ -99,7 +101,7 @@ while stack is not empty do
 end while
 ```
 
-## Join two trees
+### Join two trees (used for delete)
 
 preconditon: max(t1) < min(t2)
 
@@ -131,7 +133,7 @@ JoinTree(t1, t2):
     return(min)
 ```
 
-## delete
+### delete
 
 - empty tree
 - no subtree
@@ -142,8 +144,12 @@ JoinTree(t1, t2):
 TreeDelete(tree, item):
     if tree is empty then
         return tree
-    end if 
-    if item = data(tree) then 
+    end if
+    if item < data(tree) then 
+        left(tree) = TreeDelete(left(tree), item)
+    else if item > data(tree) then 
+        right(tree) = TreeDelete(right(tree), item)
+    else item = data(tree) then 
         new = tree
         if left(tree) and right(tree) are empty then
              new = empty tree
@@ -155,23 +161,18 @@ TreeDelete(tree, item):
              new=JoinTree(left(tree), right(tree))
         end if    
         free(tree)
-        return new
     end if
-    if item < data(tree) then 
-        left(tree) = TreeDelete(left(tree), item)
-    end if
-    if item > data(tree) then 
-        right(tree) = TreeDelete(right(tree), item)
-    end if
-    
+    return new
 ```
 
-## Balanced BST
+### Balanced BST
 
-- minimum height = log2N
+weight balanced tree
+
 - diff(Number of node in left subtree - Number of node in right subtree) <= 1
+- minimum height = log2N
 
-### tree rotation
+### Rotation
 
 ```
 RotateRight(tree)
@@ -184,18 +185,28 @@ RotateRight(tree)
     return newRoot
 ```
 
-### Rebalance tree
+### Partition
 
 ```
-BalanceTreeInsert(tree , item):
+partition(tree, i):
 
-    tree = TreeInsert(tree, item)
-    if #node(tree) mod k = 0 then
-        tree = rebalance(tree)
+    middle = nodes(left(tree))
+    if i < middle then
+        left(tree) = partition(tree, i)
+        tree = rotationRight(tree)
+    else if i > middle then
+        right(tree) = partition(tree, i - (middle + 1))
+        tree = rotationLeft(tree)
     end if
     return tree
 
+```
 
+### Rebalance tree (periodically)
+
+cost is O(N)
+
+```
 rebalance(tree):
 
     if nodes(tree) >= 3 then
@@ -204,23 +215,15 @@ rebalance(tree):
         right(tree) = rebalance(right(tree))
     end if 
     return tree
-
-
-partition(tree, i):
-
-    middle = nodes(left(tree))
-    if i < middle then
-        left(tree) = partition(tree, i)
-        tree = rotationRight(tree)
-    else if i > middle then
-        right(tree) = partition(tree, i - (m + 1))
-        tree = rotationLeft(tree)
-    end if
-    return tree
-
 ```
 
-## random insert a tree
+### insertion at root
+
+- O(height)
+- no balance guarantee
+
+
+### random insert a tree
 
 ```
 insertRandom(tree, item):
@@ -236,7 +239,9 @@ else
 end if
 ```
 
-## insert a splay tree
+## Splay tree
+
+different from insert at root method on left-left and right-right
 
 ```
 // total: O(nlogn)
@@ -256,7 +261,7 @@ insertSplay(tree, item):
          tree = rotateRight(tree)
       else if item > data(left(tree)) then // right of left
          right(left(tree)) = insertSplay(right(left(tree)), item)
-         tree = rotateLeft(tree)
+         right(tree) = rotateLeft(right(tree))
          tree = rotateRight(tree)
       else
          tree = rotateRight(tree)
@@ -267,7 +272,7 @@ insertSplay(tree, item):
          tree = rotateLeft(tree)
       else if item < data(right(tree)) then // left of right
          left(right(tree)) = insertSplay(left(right(tree)), item)
-         tree = rotateRight(tree)
+         left(tree) = rotateRight(left(tree))
          tree = rotateLeft(tree)
       else if item > data(right(tree)) then // right of right
          right(right(tree)) = insertSplay(right(right(tree)), item)

@@ -1,6 +1,6 @@
 # Everything about graph
 
-## Propeties
+## Terminology
 
 - E(most) = V/(V-1)/2 (complete graph)
 - dense: E~V^2
@@ -8,15 +8,12 @@
 - adjacent: v to v
 - incident: e to v
 - degree of v
-
-### Kinds of graph
-
 - path
 - cycle
-- length of path or cycle
-- tree (no cycle)
+  - length of path or cycle
+- tree (acyclic)
 - spanning tree
-- clique
+- clique(complete subgraph)
 - hamiltonian path/cycle
   - each vertex exactly once
 - Euler path/cycle
@@ -25,6 +22,17 @@
   - a graph has a Euler circuit iff all vertex have even degree
 
 ## Representations
+
+            |array of edges|adjacency matrix|adjacency list
+------------|--------------|----------------|--------------
+space       | E            | V*V            | V+E
+------------|--------------|----------------|--------------
+initialize  | 1            | V*V            | V
+------------|--------------|----------------|--------------
+insert      | E            | 1              | 1(E)
+------------|--------------|----------------|--------------
+remove      | E            | 1              | E
+
 
 ### array of edges
 
@@ -111,7 +119,7 @@ insertEdge(g, (v, w)):
 
     if g.edges[v][w] = 0 then
         g.edges[v][w] = 1
-        g.edge[w][v] =1
+        g.edge[w][v] = 1
         g.nE++
     end if
 
@@ -183,18 +191,6 @@ removeEdge(g, (v, w)):
         g.nE--
     end if
 ```
-
-### compare
-
-            |array of edges|adjacency matrix|adjacency list
-------------|--------------|----------------|--------------
-space       | E            | V*V            | V+E
-------------|--------------|----------------|--------------
-initialize  | 1            | V*V            | V
-------------|--------------|----------------|--------------
-insert      | E            | 1              | 1
-------------|--------------|----------------|--------------
-remove      | E            | 1              | E
 
 ## Graph Traversal
 
