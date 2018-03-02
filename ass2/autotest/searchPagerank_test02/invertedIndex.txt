@@ -1,0 +1,58 @@
+and  url11
+apparent  url11
+ascribed  url21 url11
+attributed  url21 url11
+been  url11
+changes  url21 url11
+circle  url22 url23
+color  url21 url11
+cycles  url31
+design  url21 url11
+early  url11
+eu  url34
+experiments  url34
+features  url21 url11
+has  url11
+high  url23
+human  url11
+intelligent  url21 url11
+interest  url11
+japan  url34
+jupiter  url34
+jupitor  url23
+landing  url32
+light  url31 url23
+linear  url21 url11
+long  url11
+man  url32
+mars  url32 url34 url21 url22 url23 url11
+moon  url31 url32 url34 url22 url23
+moons  url23
+nasa  url34
+observations  url11
+of  url11
+on  url11
+planet  url32 url34
+planets  url34
+pluto  url22 url23
+promise  url32
+rays  url31 url23
+red  url32
+revealed  url21 url11
+robot  url34
+robotics  url32
+seasonal  url21 url22 url11
+small  url23
+subject  url11
+sun  url31 url32 url22 url23
+surface  url21 url11
+telescopic  url11
+that  url11
+the  url11
+to  url21 url11
+vegetation  url21 url11
+volcano  url31 url32 url34 url23
+waves  url23
+weather  url31 url32 url34
+were  url21 url11
+winds  url22 url23
